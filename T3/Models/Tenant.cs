@@ -13,7 +13,14 @@ namespace T3.Models
         public DateTime EnrollmentDate { get; set; }
         public string Location { get; set; }
         public string Desctiption { get; set; }
+        
+        
         public ICollection<AppUser> Users { get; set; }
+        public ICollection<Course> Courses { get; set; }
+        public ICollection<Client> Clients { get; set; }
+        //public ICollection<Enrollment> Enrollments { get; set; }
+        //public ICollection<CourseAssignment> CourseAssignments { get; set; }
+
 
     }
 }

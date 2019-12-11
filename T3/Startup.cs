@@ -32,8 +32,12 @@ namespace T3
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
+
+            //why AddUserManager here? cause we need tell system that is <AppUser> not <IdentityUser>
+            //why AddRoleMananger not here? cause system is ready for <IdentityRole>
+            //AddRoles should call first before AddEntityFrameWorkStores that is reasonable
             services.AddDefaultIdentity<AppUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>().AddUserManager<AppUserManager<AppUser>>();
+                .AddRoles<IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddUserManager<AppUserManager<AppUser>>();
 
             services.AddScoped<ITenantResolver, TenantResolver>();
 

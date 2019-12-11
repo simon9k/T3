@@ -14,6 +14,36 @@
     <Compile Remove="Data\Migrations\20191127053655_reset1.Designer.cs" />
     <Compile Remove="Data\Migrations\20191127054234_reset2.cs" />
     <Compile Remove="Data\Migrations\20191127054234_reset2.Designer.cs" />
+    <Compile Remove="Data\Migrations\20191208051241_AddClientAndOthers.cs" />
+    <Compile Remove="Data\Migrations\20191208051241_AddClientAndOthers.Designer.cs" />
+    <Compile Remove="Data\Migrations\20191210051243_addClientRoleInitial.cs" />
+    <Compile Remove="Data\Migrations\20191210051243_addClientRoleInitial.Designer.cs" />
+    <Compile Remove="Data\Migrations\20191210052350_addClientRoleInitial.cs" />
+    <Compile Remove="Data\Migrations\20191210052350_addClientRoleInitial.Designer.cs" />
+    <Compile Remove="Data\Migrations\20191210053917_addClientRoleInitial.cs" />
+    <Compile Remove="Data\Migrations\20191210053917_addClientRoleInitial.Designer.cs" />
+    <Compile Remove="Data\Migrations\20191210054235_addClientRoleInitial.cs" />
+    <Compile Remove="Data\Migrations\20191210054235_addClientRoleInitial.Designer.cs" />
+    <Compile Remove="Data\Migrations\20191210060307_addClientRoleInitial.cs" />
+    <Compile Remove="Data\Migrations\20191210060307_addClientRoleInitial.Designer.cs" />
+    <Compile Remove="Data\Migrations\20191210061336_addClientRoleInitial.cs" />
+    <Compile Remove="Data\Migrations\20191210061336_addClientRoleInitial.Designer.cs" />
+    <Compile Remove="Data\Migrations\20191210062938_addClientRoleInitial.cs" />
+    <Compile Remove="Data\Migrations\20191210062938_addClientRoleInitial.Designer.cs" />
+    <Compile Remove="Data\Migrations\20191210064810_addClientRoleInitial.cs" />
+    <Compile Remove="Data\Migrations\20191210064810_addClientRoleInitial.Designer.cs" />
+    <Compile Remove="Data\Migrations\20191210065430_addClientRoleInitial.cs" />
+    <Compile Remove="Data\Migrations\20191210065430_addClientRoleInitial.Designer.cs" />
+    <Compile Remove="Data\Migrations\20191210070549_addClientRoleInitial.cs" />
+    <Compile Remove="Data\Migrations\20191210070549_addClientRoleInitial.Designer.cs" />
+    <Compile Remove="Data\Migrations\20191210071356_addClientRoleInitial.cs" />
+    <Compile Remove="Data\Migrations\20191210071356_addClientRoleInitial.Designer.cs" />
+    <Compile Remove="Data\Migrations\20191211013834_addClientRoleInitial.cs" />
+    <Compile Remove="Data\Migrations\20191211013834_addClientRoleInitial.Designer.cs" />
+    <Compile Remove="Data\Migrations\20191211014423_addClientRoleInitial.cs" />
+    <Compile Remove="Data\Migrations\20191211014423_addClientRoleInitial.Designer.cs" />
+    <Compile Remove="Data\Migrations\20191211014759_addClientRoleInitial.cs" />
+    <Compile Remove="Data\Migrations\20191211014759_addClientRoleInitial.Designer.cs" />
   </ItemGroup>
 
 

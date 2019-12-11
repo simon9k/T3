@@ -41,6 +41,17 @@ namespace T3.Areas.Identity.Data
             get { return base.Users; }
         }
 
+        //Instructor, same for Manager/Parent/asisitant/...
+        public async Task<IList<TUser>> GetInstructorsAsync()
+        {
+            //get { return base.Users.Where(s => s.TenantId == this.TenantId); }
+             return await base.GetUsersInRoleAsync("Insructor"); 
+        }
+        public async Task<IList<TUser>> GetParentsAsync()
+        {
+            //get { return base.Users.Where(s => s.TenantId == this.TenantId); }
+            return await base.GetUsersInRoleAsync("Parent");
+        }
 
 
         public override async Task<IdentityResult> CreateAsync(TUser user)
@@ -84,5 +95,6 @@ namespace T3.Areas.Identity.Data
         {
             return base.UpdateAsync(user);
         }
+
     }
 }

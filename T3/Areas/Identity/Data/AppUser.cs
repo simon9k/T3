@@ -11,13 +11,14 @@ namespace T3.Areas.Identity.Data
     public class AppUser:IdentityUser
     {
         [Required]
-        public Guid TenantId { get; set; } = Guid.Empty;
+        public Guid TenantId { get; set; }// = Guid.Empty;
 
         [PersonalData]
         public DateTime DOB { get; set; }
 
         public Tenant Tenant{  get; set; }
         public int MyProperty { get; set; }
+        public ICollection<CourseAssignment> CourseAssignments { get; set; }
 
     }
 }

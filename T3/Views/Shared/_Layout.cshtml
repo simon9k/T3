@@ -39,8 +39,21 @@
             </div>
         </nav>
     </header>
+    @using T3.Areas.Identity.Data;
     @inject ITenantResolver tenantResolver
     <div>TenantId = @tenantResolver.GetTenantId()</div>
+    @inject AppUserManager<AppUser> userManager
+    @{
+        string roles = null;
+        var u = await userManager.GetUserAsync(User);
+        string[] roleArray = u==null ? null :(await userManager.GetRolesAsync(u))?.ToList()?.ToArray();
+        //if = (await userManager.GetRolesAsync(u))?.ToList()?.ToArray();
+        roles = roleArray == null ? "":string.Join(",", roleArray);
+    }
+
+    <div>
+        Roles = @roles
+    </div>
 
     <div class="container">
         <main role="main" class="pb-3">
