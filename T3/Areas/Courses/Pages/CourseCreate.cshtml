@@ -1,0 +1,65 @@
+﻿@page
+@model T3.Areas.Courses.Pages.CourseCreateModel
+
+@{
+    ViewData["Title"] = "CourseCreate";
+}
+
+<h1>CourseCreate</h1>
+
+<h4>VwCourse</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <select multiple="multiple" asp-for="VwCourse.Instructors" asp-items="Model.Instructors">
+                    <option value="">选择教练</option>
+                </select>
+                @*<select multiple="multiple" asp-for="VwCourse.MultiInstructors" asp-items="Model.MultiInstructors">
+                    <option value="">All</option>
+                </select>*@
+
+            </div>
+            <div class="form-group">
+                <label asp-for="VwCourse.Name" class="control-label"></label>
+                <input asp-for="VwCourse.Name" class="form-control" />
+                <span asp-validation-for="VwCourse.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="VwCourse.IsCyclic" /> @Html.DisplayNameFor(model => model.VwCourse.IsCyclic)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="VwCourse.Date" class="control-label"></label>
+                <input asp-for="VwCourse.Date" class="form-control" />
+                <span asp-validation-for="VwCourse.Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VwCourse.StartTime" class="control-label"></label>
+                <input asp-for="VwCourse.StartTime" class="form-control" />
+                <span asp-validation-for="VwCourse.StartTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VwCourse.EndTime" class="control-label"></label>
+                <input asp-for="VwCourse.EndTime" class="form-control" />
+                <span asp-validation-for="VwCourse.EndTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VwCourse.Duration" class="control-label"></label>
+                <input asp-for="VwCourse.Duration" class="form-control" />
+                <span asp-validation-for="VwCourse.Duration" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+

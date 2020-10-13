@@ -11,8 +11,8 @@ namespace T3.Models
     public class Course
     {
         public int CourseId { set; get; }
-        public int OriginCourseID { set; get; }
-
+        public int? OriginCourseId { set; get; }
+        public string Name { get; set; }
         [Required]
         public Guid TanentId { get; set; }
 
@@ -22,11 +22,11 @@ namespace T3.Models
 
         [Display(Name = "开始时间")]
         [DataType(DataType.Time)]
-        [DisplayFormat(DataFormatString = "{0:HH:MM}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:HH:mm}", ApplyFormatInEditMode = true)]
         public DateTime StartTime { set; get; }
         [Display(Name = "结束时间")]
         [DataType(DataType.Time)]
-        [DisplayFormat(DataFormatString = "{0:HH:MM}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:HH:mm}", ApplyFormatInEditMode = true)]
         public DateTime EndTime { set; get; }
 
         //[Display(Name = "学生姓名")]

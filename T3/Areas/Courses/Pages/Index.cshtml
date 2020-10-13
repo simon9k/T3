@@ -1,0 +1,225 @@
+﻿@page
+@model T3.Areas.Courses.Pages.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="./Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Course[0].OriginCourseId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Course[0].TanentId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Course[0].IsCyclic)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Course[0].StartTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Course[0].EndTime)
+            </th>
+            <th>Instrutors</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Course)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OriginCourseId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TanentId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsCyclic)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EndTime)
+                </td>
+                <td>
+                    @*@Html.DisplayFor(modelItem => item.CourseAssignments.All().)*@
+                    @{
+                        //string instructorsName = "";
+
+                        if (item.CourseAssignments != null)
+                        {
+                            foreach (var ca in item.CourseAssignments)
+                            {
+                                <div>@ca.AppUser.UserName</div>
+                                //instructorsName +=  + "";
+
+                            }
+
+                        }
+                    }
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.CourseId">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.CourseId">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.CourseId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@{
+    ViewBag.Title = "课表";
+
+    var TemporaryCourse = "";
+
+    var IsNextCourse = false;
+    var IsPassedCourse = false;
+    var NextCourseLabled = false;
+
+    var LineLable = "";
+    DateTime CurrentDay = new DateTime(0);
+    int i = 0;
+
+    DateTime StartDate = (DateTime)ViewData["StartDate"];
+
+}
+@*<a class="btn btn-default" href="/Courses?dtStartDate=12%2F22%2F2019%2000%3A00%3A00" style="float:right">下周&gt;&gt;</a>
+    <a class="btn btn-default" href="/Courses" style="float:right"> 本周 </a>
+    <a class="btn btn-default" href="/Courses?dtStartDate=12%2F08%2F2019%2000%3A00%3A00" style="float:right">&lt;&lt;上周</a>
+
+    <a class="btn btn-default" href="/Courses/create" style="float:left">加课 + </a>*@
+
+<h4 class="label label-success" style="float:left">@StartDate.ToString("MMM")</h4>
+
+<a class="btn btn-info" asp-page="/Index"
+   asp-route-dtStartDate="@StartDate.AddDays(7).ToString("yyyy-MM-dd")" style="float:right">下周&gt;&gt;</a>
+<a class="btn btn-info" asp-page="/Index" style="float:right">本周</a>
+<a class="btn btn-info" asp-page="/Index"
+   asp-route-dtStartDate="@StartDate.AddDays(-7).ToString("yyyy-MM-dd")" style="float:right">&lt;&lt;上周</a>
+
+<a class="btn btn-outline-info" asp-area = "Courses" asp-page="/CourseCreate" style="float:left">加课 +</a>
+
+
+<div style="clear:both">
+    @*  <button type="button" class="btn btn-default" style="float:left;">&laquo;</button>*@
+    <ul class="nav nav-pills btn-sm" id="Is" style="float:left">
+        @*//navbar-fixed-top*@
+        <li class="active "><a href="#tabn" data-toggle="tab">日<div>@StartDate.Day</div></a></li>
+        <li><a href="#tabn" data-toggle="tab">一<div>@StartDate.AddDays(1).Day</div></a></li><!--  "style="padding-top:0px;padding-left:0px;color:#000000" <sup>26</sup>-->
+        <li><a href="#tab2" data-toggle="tab">二<div>@StartDate.AddDays(2).Day</div></a></li>
+        <li><a href="#tab2" data-toggle="tab">三<div>@StartDate.AddDays(3).Day</div></a></li>
+        <li><a href="#tab2" data-toggle="tab">四<div>@StartDate.AddDays(4).Day</div><div><span class="badge">4</span></div></a></li>
+        <li><a href="#tab2" data-toggle="tab">五<div>@StartDate.AddDays(5).Day</div></a></li>
+        <li><a href="#tab2" data-toggle="tab">六<div>@StartDate.AddDays(6).Day</div></a></li>
+    </ul>
+    @*<button type="button" class="btn btn-default" style="float:left">&raquo;</button>*@
+</div>
+
+<div style="clear:both">@StartDate.ToString("d") ~ @ViewBag.EndDate</div> @*清楚前序的float属性影响*@
+@if (Model.Course.Count() == 0)
+{
+    @Html.Raw("<h2>爽，没有课程安排!</h2>")
+}
+else
+    foreach (var item in Model.Course)
+    {
+        i++;
+        if (i == 1)
+        {
+            @Html.Raw("<table class=\"table\">");
+        }
+
+        if ((CurrentDay.Year != item.StartTime.Year) || (CurrentDay.Month != item.StartTime.Month) || (CurrentDay.Day != item.StartTime.Day))
+        {
+            @*新的一天第一节课？日期+表头*@
+            CurrentDay = new DateTime(item.StartTime.Year, item.StartTime.Month, item.StartTime.Day);
+            @*<h3>@item.StartTime.ToString("MM-dd ddd")</h3>*@
+            if (i > 1) //关闭上日表格
+            {
+                @*@Html.Raw("</table>");*@
+
+            }
+            @Html.Raw("<tr><td></td><td><h4 class=\"th-disable\">" + @item.StartTime.ToString("MM-dd ddd") + "</h4></td><td></td><td></td><td></td></tr>");
+            @*@Html.Raw("<table class=\"table\">");*@
+
+
+        }
+
+        @* 临时加课 *@
+
+        TemporaryCourse = (!item.IsCyclic) ? "glyphicon glyphicon-time " : "";
+        @* 已过期课时 *@
+        IsPassedCourse = (DateTime.Compare(DateTime.Now, item.StartTime) > 0);
+
+        //是否是接下来一节课
+        if ((DateTime.Compare(DateTime.Now, item.StartTime) <= 0) && !IsNextCourse)
+        {
+            IsNextCourse = true;
+
+        }
+
+        LineLable = "";
+        if (IsPassedCourse)
+        {
+            LineLable = "class=\"th-disable\"";
+        }
+        else
+        if (IsNextCourse && !NextCourseLabled)
+        {
+            LineLable = "class=\"alert alert-danger\"";
+            NextCourseLabled = true;
+
+        }
+
+        <tr @Html.Raw(@LineLable)>
+            <td>
+                <span class="@TemporaryCourse" aria-hidden="true"></span>
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartTime) ~ @Html.DisplayFor(modelItem => item.EndTime)
+            </td>
+
+
+            <td>
+                @*@Html.DisplayFor(modelItem => item.StudentName)*@
+            </td>
+            <td>
+                @*评价 *@
+                @{
+                    var label = "label-success";
+                    var ok = "glyphicon-thumbs-up";
+                }
+                @if (IsPassedCourse)
+                {
+
+                    <button type="button" class="btn btn-default @label">
+                        <span class="glyphicon @ok" aria-hidden="true"></span>
+                    </button>
+
+                }
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.CourseId">调课</a> |
+                @*@Html.ActionLink("调课", "Edit", new { id = item.CourseId })*@
+            </td>
+        </tr>
+        @*某天最后一节课？表尾*@
+        if (i == Model.Course.Count())
+        {
+            @Html.Raw("</table>");
+
+        }
+
+    }

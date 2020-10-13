@@ -45,7 +45,7 @@ namespace T3.Areas.Identity.Data
         public async Task<IList<TUser>> GetInstructorsAsync()
         {
             //get { return base.Users.Where(s => s.TenantId == this.TenantId); }
-             return await base.GetUsersInRoleAsync("Insructor"); 
+             return await base.GetUsersInRoleAsync("Instructor"); 
         }
         public async Task<IList<TUser>> GetParentsAsync()
         {

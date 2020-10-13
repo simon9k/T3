@@ -1,0 +1,60 @@
+﻿@page
+@model T3.Areas.Students.Pages.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Student</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                @*<label asp-for="Student.TenantId" class="control-label"></label>
+                <select asp-for="Student.TenantId" class ="form-control" asp-items="ViewBag.TenantId"></select>*@
+            </div>
+            <div class="form-group">
+                <label asp-for="Student.Name" class="control-label"></label>
+                <input asp-for="Student.Name" class="form-control" />
+                <span asp-validation-for="Student.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Student.NickName" class="control-label"></label>
+                <input asp-for="Student.NickName" class="form-control" />
+                <span asp-validation-for="Student.NickName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Student.Sex" class="control-label"></label>
+                <input asp-for="Student.Sex" class="form-control" />
+                <span asp-validation-for="Student.Sex" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Student.BOD" class="control-label"></label>
+                <input asp-for="Student.BOD" class="form-control" />
+                <span asp-validation-for="Student.BOD" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Student.EOD" class="control-label"></label>
+                <input asp-for="Student.EOD" class="form-control" />
+                <span asp-validation-for="Student.EOD" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Student.PersonalID" class="control-label"></label>
+                <input asp-for="Student.PersonalID" class="form-control" />
+                <span asp-validation-for="Student.PersonalID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+

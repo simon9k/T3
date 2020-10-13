@@ -1,0 +1,49 @@
+﻿@page
+@model T3.Areas.Courses.Pages.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Course</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Course.OriginCourseId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Course.OriginCourseId)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Course.TanentId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Course.TanentId)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Course.IsCyclic)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Course.IsCyclic)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Course.StartTime)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Course.StartTime)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Course.EndTime)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Course.EndTime)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Course.CourseId">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using T3.Areas.Identity.Data;
 using T3.Models;
+using T3.Models.ViewModel;
 
 namespace T3.Data
 {
@@ -59,25 +60,37 @@ namespace T3.Data
             //);
 
             //TenantId+NickName should be unique,basically we can use NickName to find the
-            // client specification.
-            modelBuilder.Entity<Client>().HasIndex(c => new { c.TenantId, c.NickName })
-                .IsUnique();
+            // Student specification.
+            //modelBuilder.Entity<Student>().HasIndex(c => new { c.TenantId, c.NickName })
+            //    .IsUnique();
 
             //Set composite primary key
             modelBuilder.Entity<CourseAssignment>()
                 .HasKey(c => new { c.CourseId, c.AppUserId });
 
-            //Set CourseId,ClientId unique
+            //Set CourseId,StudentId unique
             modelBuilder.Entity<Enrollment>()
-                .HasKey(e => new { e.CourseId, e.ClientId });
-            //.HasIndex(e => new { e.CourseId, e.ClientId })
+                .HasKey(e => new { e.CourseId, e.StudentId });
+            //.HasIndex(e => new { e.CourseId, e.StudentId })
             //.IsUnique();
 
+            //Set composite primary key
+            modelBuilder.Entity<GuardianRelation>()
+                .HasKey(g => new { g.AppUserId, g.StudentId });
+    
+            //.HasKey(g => new { g.StudentId, g.AppUserId });  
+            //.HasNoKey()
+            //.HasIndex(g => new { g.AppUserId, g.StudentId });
+            //.HasKey(g => new { g.AppUserId, g.StudentId });  
+            //Introducing FOREIGN KEY constraint 'FK_GuardianRelation_Student_StudentId' 
+            //on table 'GuardianRelation' may cause cycles or multiple cascade paths. Specify ON DELETE NO ACTION or ON UPDAT
+            // todo make sure:  **don't know why, so just set Index, not sure about the cascade delete is OK
 
             base.OnModelCreating(modelBuilder);
         }
         public DbSet<Tenant> Tenants { get; set; }
-
+        public DbSet<T3.Models.Course> Courses { get; set; }
+        public DbSet<T3.Models.Student> Students { get; set; }
 
     }
 
@@ -138,22 +151,80 @@ namespace T3.Data
 
             IDictionary<string, List<string>> userRoles = new Dictionary<string, List<string>>();
             userRoles.Add("simon9k@outlook.com", new List<string> { "SuperAdmin" });
-            userRoles.Add("simon9k1.1@outlook.com", new List<string> { "Admin", "Manager", "Client" });
+            userRoles.Add("simon9k1.1@outlook.com", new List<string> { "Admin", "Manager", "Student" });
             userRoles.Add("simon9k1.2@outlook.com", new List<string> { "Instructor" });
-            userRoles.Add("simon9k1.3@outlook.com", new List<string> { "Instructor", "Client" });
-            userRoles.Add("simon9k1.4@outlook.com", new List<string> { "Client" });
+            userRoles.Add("simon9k1.3@outlook.com", new List<string> { "Instructor", "Student" });
+            userRoles.Add("simon9k1.4@outlook.com", new List<string> { "Student" });
             userRoles.Add("simon9k1.5@outlook.com", new List<string> { "Assitant" });
-            userRoles.Add("simon9k1.6@outlook.com", new List<string> { "Client" });
+            userRoles.Add("simon9k1.6@outlook.com", new List<string> { "Student" });
 
             var appRole = new IdentityRole[]
             {
                 new IdentityRole("SuperAdmin"),
                 new IdentityRole("Admin"),
-                new IdentityRole("Client"), //Parents
+                new IdentityRole("Student"), //Parents
                 new IdentityRole("Instructor"),
                 new IdentityRole("Manager"),
                 new IdentityRole("Assistant"),
                 new IdentityRole("Guest")
+
+            };
+
+            var students = new Student[]
+            {
+                //new Student{TenantId =tenants[1].TenantId, Name="大宝",NickName="贝贝",BOD=DateTime.Parse("2007-01-01") },
+                //new Student{TenantId =tenants[1].TenantId, Name="大宝1",NickName="贝贝1",BOD=DateTime.Parse("2008-01-01") },
+                //new Student{TenantId =tenants[1].TenantId, Name="大宝2",NickName="贝贝2",BOD=DateTime.Parse("2009-01-01") },
+                //new Student{TenantId =tenants[1].TenantId, Name="大宝3",NickName="贝贝3",BOD=DateTime.Parse("2017-01-01") },
+                //new Student{TenantId =tenants[1].TenantId, Name="大宝4",NickName="贝贝4",BOD=DateTime.Parse("2017-01-01") },
+                //new Student{TenantId =tenants[1].TenantId, Name="大宝5",NickName="贝贝5",BOD=DateTime.Parse("2013-01-01") }
+            };
+
+            //var courses = new List<Course>
+            //{
+            //    new Course{
+            //        ID=1,OriginID=1,
+            //        StartTime =DateTime.Parse("2018-3-8 9:00"), EndTime=DateTime.Parse("2018-3-8 9:45"),
+            //        StudentName ="Dora" ,IsCyclic=true
+            //    },
+            //    new Course{
+            //        ID=2,OriginID=2,
+            //        StartTime =DateTime.Parse("2018-3-8 10:00"), EndTime=DateTime.Parse("2018-3-8 10:45"),
+            //        StudentName ="Tommy" ,IsCyclic=true
+            //    },
+            //    new Course{
+            //        ID=3,OriginID=3,
+            //        StartTime =DateTime.Parse("2018-3-8 11:00"), EndTime=DateTime.Parse("2018-3-8 11:45"),
+            //        StudentName ="逗比" ,IsCyclic=false
+            //    },
+            //    new Course{
+            //        ID=4,OriginID=4,
+            //        StartTime =DateTime.Parse("2018-3-8 12:00"), EndTime=DateTime.Parse("2018-3-8 12:45"),
+            //        StudentName ="Blade" ,IsCyclic=true
+            //    },
+            //    new Course{
+            //        ID=5,OriginID=5,
+            //        StartTime =DateTime.Parse("2018-3-8 21:00"), EndTime=DateTime.Parse("2018-3-8 21:45"),
+            //        StudentName ="小虎"  ,IsCyclic=true
+            //    },
+            //    new Course{
+            //        ID=6,OriginID=4,
+            //        StartTime =DateTime.Parse("2018-3-13 12:00"), EndTime=DateTime.Parse("2018-3-13 12:45"),
+            //        StudentName ="Blade" ,IsCyclic=true
+            //    },
+            //    new Course{
+            //        ID=7,OriginID=6,
+            //        StartTime =DateTime.Parse("2018-3-20 12:00"), EndTime=DateTime.Parse("2018-3-20 12:45"),
+            //        StudentName ="Blade" ,IsCyclic=true
+            //    }
+
+            //};
+            //courses.ForEach(s => context.Courses.Add(s));
+            //context.SaveChanges();
+
+            var courses = new Course[]
+            {
+                new Course{Name = "", StartTime = DateTime.Parse("2007-01-01"),EndTime =DateTime.Parse("2007-01-01")}
 
             };
 
@@ -163,15 +234,21 @@ namespace T3.Data
                 context.Add(tenant);
 
             }
+
             await context.SaveChangesAsync();
 
+            foreach (Student student in students)
+            {
+                context.Add(student);
 
+            }
+            await context.SaveChangesAsync();
 
             //initial roles
             foreach (IdentityRole role in appRole)
             {
                 //var b = await roleManager.RoleExistsAsync(role.Name);
-                if(!await roleManager.RoleExistsAsync(role.Name))
+                if (!await roleManager.RoleExistsAsync(role.Name))
                 {
                     x = await roleManager.CreateAsync(role);
 
@@ -189,13 +266,13 @@ namespace T3.Data
                 //var roles = userRoles[user.UserName];
                 List<string> roles = null;
                 if (userRoles.TryGetValue(user.UserName, out roles))
-                //if (roles != null)
+                    //if (roles != null)
                     foreach (string r in roles)
                         x = await appUserManager.AddToRoleAsync(user, r);
 
             }
-            //todo RoleManager.Create , add role, instructor/client/manager/parent
-            //todo Client/Course/Enrollment/CourseAssignment
+            //todo RoleManager.Create , add role, instructor/Student/manager/parent
+            //todo Student/Course/Enrollment/CourseAssignment
 
 
 

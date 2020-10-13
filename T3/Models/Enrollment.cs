@@ -9,7 +9,7 @@ namespace T3.Models
     public class Enrollment
     {
         //public int EnrollmentId { get; set; } 
-        public int ClientId { get; set; }
+        public int StudentId { get; set; }
         public int CourseId { get; set; }
         //Introducing FOREIGN KEY constraint 'FK_Enrollment_Tenants_TenantId' on table 'Enrollment' may cause cycles or multiple cascade paths.
         //maybe because there are have two cascading delete paths 
@@ -17,11 +17,11 @@ namespace T3.Models
         //how to get all Enrollment in this Tenant? 
         //   **No need to do this
         //public Guid TenantId { get; set; }
-       
-        
-        public Client Client { get; set; }
-        public Course Course { get; set; }
         //public Tenant Tenant { get; set; }
+
+
+        public Student Student { get; set; }
+        public Course Course { get; set; }
 
 
 

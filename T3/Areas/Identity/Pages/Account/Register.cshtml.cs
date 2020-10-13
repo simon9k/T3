@@ -26,7 +26,7 @@ namespace T3.Areas.Identity.Pages.Account
         private readonly AppUserManager<AppUser> _userManager;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
-        private readonly ApplicationDbContext _dbContext;
+        //private readonly ApplicationDbContext _dbContext;
 
         public RegisterModel(
             AppUserManager<AppUser> userManager,

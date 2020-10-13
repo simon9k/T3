@@ -40,6 +40,13 @@ namespace T3
                 .AddRoles<IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddUserManager<AppUserManager<AppUser>>();
 
             services.AddScoped<ITenantResolver, TenantResolver>();
+            //Do we need interfaces for dependency injection?
+            //      Does it work? Yes. Should you do it? No.
+            //      The only benefit you get over simply creating instances with new Storage() is service lifetime management (transient vs. scoped vs. singleton)
+            //      That's useful, but only part of the power of using DI. 
+            //      As @DavidG pointed out, the big reason why interfaces are so often paired with DI is because of testing. 
+            //      Making your consumer classes depend on interfaces (abstractions) instead of other concrete classes makes them much easier to test. 
+            services.AddScoped<CourseManager>();
 
             services.AddControllersWithViews();
             services.AddRazorPages();

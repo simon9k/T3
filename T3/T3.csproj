@@ -44,6 +44,24 @@
     <Compile Remove="Data\Migrations\20191211014423_addClientRoleInitial.Designer.cs" />
     <Compile Remove="Data\Migrations\20191211014759_addClientRoleInitial.cs" />
     <Compile Remove="Data\Migrations\20191211014759_addClientRoleInitial.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200105074737_addStudentGuardian.cs" />
+    <Compile Remove="Data\Migrations\20200105074737_addStudentGuardian.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200105084232_addStudentGuardianRelation.cs" />
+    <Compile Remove="Data\Migrations\20200105084232_addStudentGuardianRelation.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200105085203_addStudentGuardianRelation.cs" />
+    <Compile Remove="Data\Migrations\20200105085203_addStudentGuardianRelation.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200106022659_addStudentGuardianRelation.cs" />
+    <Compile Remove="Data\Migrations\20200106022659_addStudentGuardianRelation.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200106023827_addStudentGuardianRelation.cs" />
+    <Compile Remove="Data\Migrations\20200106023827_addStudentGuardianRelation.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200106025148_addStudentGuardianRelation.cs" />
+    <Compile Remove="Data\Migrations\20200106025148_addStudentGuardianRelation.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200106031224_addStudentGuardianRelation.cs" />
+    <Compile Remove="Data\Migrations\20200106031224_addStudentGuardianRelation.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200106033048_addStudentGuardian.cs" />
+    <Compile Remove="Data\Migrations\20200106033048_addStudentGuardian.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200106045142_addStudentGuardian.cs" />
+    <Compile Remove="Data\Migrations\20200106045142_addStudentGuardian.Designer.cs" />
   </ItemGroup>
 
 
