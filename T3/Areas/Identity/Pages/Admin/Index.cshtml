@@ -1,0 +1,29 @@
+﻿@page
+@using T3.Areas.Identity.Data
+@model T3.Areas.Identity.Pages.Admin.IndexModel
+
+
+<h1 class="bg-info text-white">All Users: Razor Page</h1>
+<a asp-action="Create" class="btn btn-secondary">Create a User: Razor Page</a>
+
+<table class="table table-sm table-bordered">
+    <tr><th>ID</th><th>Name</th><th>Email</th><th>TenantID</th><th>Update</th><th>Delete</th></tr>
+    @foreach (AppUser user in Model.Users)
+    {
+        <tr>
+            <td>@user.Id</td>
+            <td>@user.UserName</td>
+            <td>@user.Email</td>
+            <td>@user.TenantId</td>
+            @*<td>@user.Tenant.AbbrName</td>*@
+            <td><a class="btn btn-sm btn-primary" asp-action="Update" asp-route-id="@user.Id">Update</a></td>
+            <td>
+                <form asp-action="Delete" asp-route-id="@user.Id" method="post">
+                    <button type="submit" class="btn btn-sm btn-danger">
+                        Delete
+                    </button>
+                </form>
+            </td>
+        </tr>
+    }
+</table>
