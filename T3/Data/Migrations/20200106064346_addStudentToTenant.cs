@@ -19,13 +19,16 @@ namespace T3.Data.Migrations
                 oldType: "uniqueidentifier",
                 oldNullable: true);
 
+            //***再次发生： FOREIGN KEY constraint 'FK_' on table  may cause cycles or multiple cascade paths. Specify ON DELETE NO ACTION or ON UPDATE NO ACTION, or modify other FOREIGN KEY constraints.
             migrationBuilder.AddForeignKey(
                 name: "FK_Students_Tenants_TenantId",
                 table: "Students",
                 column: "TenantId",
                 principalTable: "Tenants",
                 principalColumn: "TenantId",
-                onDelete: ReferentialAction.Cascade);
+                onDelete: ReferentialAction.NoAction,//to fix the failing of Creating the FK
+                onUpdate: ReferentialAction.NoAction //to fix the failing of Creating the FK
+                );
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

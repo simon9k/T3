@@ -1,0 +1,63 @@
+﻿@page
+@model T3.Areas.Templates.Pages.ReadDbModel
+@{
+}
+<h1>Read File</h1>
+
+@if (ViewData["Message"] != null)
+{
+    //var bPicture = ViewData["bPicture"] as bool;
+    if (Model.bPicture)
+    {
+        <div>Image:</div>
+        <div>
+
+            <img src="@ViewData["Message"]" width="250" height="200" alt="Alternate Text" />
+
+        </div>
+
+    }
+    else
+    {
+        <div class="alert alert-success alert-dismissible" style="margin-top:20px">
+            @ViewData["Message"]
+        </div>
+
+    }
+}
+
+
+
+<dl>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.ReadFile.UntrustedName)
+    </dt>
+    <dd>
+        @Model.ReadFile.UntrustedName
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.ReadFile.Note)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.ReadFile.Note)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.ReadFile.Size)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.ReadFile.Size)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.ReadFile.UploadDT)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.ReadFile.UploadDT)
+    </dd>
+</dl>
+
+<form method="post">
+    <input type="hidden" asp-for="ReadFile.Id" />
+    <input type="submit" value="Delete" class="btn btn-default" />
+</form>
+

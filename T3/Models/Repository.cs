@@ -44,8 +44,21 @@ namespace T3.Models
         }
 
     }
+    public class StaffManager : Repository<Staff>
+    {
+        public StaffManager(ApplicationDbContext dbContext, ITenantResolver tenantResolver)
+              : base(dbContext, tenantResolver)
+        {
 
+        }
+        public override async Task<int> AddAsync(Staff staff)
+        {
+            staff.TenantId = _tenantResolver.GetTenantId();
+            return await base.AddAsync(staff);
+        }
+    }
 
+        
     public class CourseManager : Repository<Course>
     {
         public CourseManager(ApplicationDbContext dbContext,ITenantResolver tenantResolver)

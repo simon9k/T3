@@ -13,10 +13,14 @@ namespace T3.Areas.Students.Pages
     public class CreateModel : PageModel
     {
         private readonly T3.Data.ApplicationDbContext _context;
+        private readonly ITenantResolver _tenantResolver;
 
-        public CreateModel(T3.Data.ApplicationDbContext context)
+        public CreateModel(T3.Data.ApplicationDbContext context, ITenantResolver tenantResolver)
         {
+            _tenantResolver = tenantResolver;
             _context = context;
+
+            //todo should jnject Tenant here
         }
 
         public IActionResult OnGet()
@@ -36,6 +40,7 @@ namespace T3.Areas.Students.Pages
             {
                 return Page();
             }
+            Student.TenantId = _tenantResolver.GetTenantId();
 
             _context.Students.Add(Student);
             await _context.SaveChangesAsync();

@@ -1,0 +1,61 @@
+﻿@page
+@model T3.Areas.Staffs.Pages.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Staff</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Staff.JobTitle" class="control-label"></label>
+                <input asp-for="Staff.JobTitle" class="form-control" />
+                <span asp-validation-for="Staff.JobTitle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Staff.Name" class="control-label"></label>
+                <input asp-for="Staff.Name" class="form-control" />
+                <span asp-validation-for="Staff.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Staff.NickName" class="control-label"></label>
+                <input asp-for="Staff.NickName" class="form-control" />
+                <span asp-validation-for="Staff.NickName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Staff.Sex" class="control-label"></label>
+                <input asp-for="Staff.Sex" class="form-control" />
+                <span asp-validation-for="Staff.Sex" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Staff.BOD" class="control-label"></label>
+                <input asp-for="Staff.BOD" class="form-control" />
+                <span asp-validation-for="Staff.BOD" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Staff.EOD" class="control-label"></label>
+                <input asp-for="Staff.EOD" class="form-control" />
+                <span asp-validation-for="Staff.EOD" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Staff.PersonalID" class="control-label"></label>
+                <input asp-for="Staff.PersonalID" class="form-control" />
+                <span asp-validation-for="Staff.PersonalID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+

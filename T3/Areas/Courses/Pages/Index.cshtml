@@ -194,6 +194,17 @@ else
 
             <td>
                 @*@Html.DisplayFor(modelItem => item.StudentName)*@
+                @{
+                    var teacher = item.CourseAssignments.FirstOrDefault();
+                    if (item.CourseAssignments != null)
+                    {
+                        foreach (var ca in item.CourseAssignments)
+                        {
+                            <div>@ca.AppUser.UserName</div>
+                        }
+
+                    }
+                }
             </td>
             <td>
                 @*评价 *@

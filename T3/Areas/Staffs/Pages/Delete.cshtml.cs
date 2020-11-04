@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using T3.Data;
 using T3.Models;
 
-namespace T3.Areas.Students.Pages
+namespace T3.Areas.Staffs.Pages
 {
     public class DeleteModel : PageModel
     {
@@ -20,7 +20,7 @@ namespace T3.Areas.Students.Pages
         }
 
         [BindProperty]
-        public Student Student { get; set; }
+        public Staff Staff { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -29,11 +29,10 @@ namespace T3.Areas.Students.Pages
                 return NotFound();
             }
 
-            Student = await _context.Students
-                .FirstOrDefaultAsync(m => m.Id == id);
-                //.Include(s => s.Tenant).FirstOrDefaultAsync(m => m.StudentId == id);
+            Staff = await _context.Staffs
+                .Include(s => s.Tenant).FirstOrDefaultAsync(m => m.Id == id);
 
-            if (Student == null)
+            if (Staff == null)
             {
                 return NotFound();
             }
@@ -47,11 +46,11 @@ namespace T3.Areas.Students.Pages
                 return NotFound();
             }
 
-            Student = await _context.Students.FindAsync(id);
+            Staff = await _context.Staffs.FindAsync(id);
 
-            if (Student != null)
+            if (Staff != null)
             {
-                _context.Students.Remove(Student);
+                _context.Staffs.Remove(Staff);
                 await _context.SaveChangesAsync();
             }
 

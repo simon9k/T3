@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using T3.Data;
 using T3.Models;
 
-namespace T3.Areas.Students.Pages
+namespace T3.Areas.Staffs.Pages
 {
     public class EditModel : PageModel
     {
@@ -21,7 +21,7 @@ namespace T3.Areas.Students.Pages
         }
 
         [BindProperty]
-        public Student Student { get; set; }
+        public Staff Staff { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -30,11 +30,10 @@ namespace T3.Areas.Students.Pages
                 return NotFound();
             }
 
-            Student = await _context.Students
-                .FirstOrDefaultAsync(m => m.Id == id);
-                //.Include(s => s.Tenant).FirstOrDefaultAsync(m => m.StudentId == id);
+            Staff = await _context.Staffs
+                .Include(s => s.Tenant).FirstOrDefaultAsync(m => m.Id == id);
 
-            if (Student == null)
+            if (Staff == null)
             {
                 return NotFound();
             }
@@ -51,7 +50,7 @@ namespace T3.Areas.Students.Pages
                 return Page();
             }
 
-            _context.Attach(Student).State = EntityState.Modified;
+            _context.Attach(Staff).State = EntityState.Modified;
 
             try
             {
@@ -59,7 +58,7 @@ namespace T3.Areas.Students.Pages
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!StudentExists(Student.Id))
+                if (!StaffExists(Staff.Id))
                 {
                     return NotFound();
                 }
@@ -72,9 +71,9 @@ namespace T3.Areas.Students.Pages
             return RedirectToPage("./Index");
         }
 
-        private bool StudentExists(int id)
+        private bool StaffExists(int id)
         {
-            return _context.Students.Any(e => e.Id == id);
+            return _context.Staffs.Any(e => e.Id == id);
         }
     }
 }

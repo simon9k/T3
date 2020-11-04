@@ -10,20 +10,25 @@
     <tr><th>ID</th><th>Name</th><th>Email</th><th>TenantID</th><th>Update</th><th>Delete</th></tr>
     @foreach (AppUser user in Model.Users)
     {
-        <tr>
-            <td>@user.Id</td>
-            <td>@user.UserName</td>
-            <td>@user.Email</td>
-            <td>@user.TenantId</td>
-            @*<td>@user.Tenant.AbbrName</td>*@
-            <td><a class="btn btn-sm btn-primary" asp-action="Update" asp-route-id="@user.Id">Update</a></td>
-            <td>
-                <form asp-action="Delete" asp-route-id="@user.Id" method="post">
-                    <button type="submit" class="btn btn-sm btn-danger">
-                        Delete
-                    </button>
-                </form>
-            </td>
-        </tr>
+<tr>
+    <td>@user.Id</td>
+    <td>@user.UserName</td>
+    <td>@user.Email</td>
+    <td>@user.TenantId</td>
+    @*<td>@user.Tenant.AbbrName</td>*@
+    @*<a class="nav-link text-dark" asp-area="Courses" asp-page="/Index">Course</a>*@
+
+    @*<td><a class="btn btn-sm btn-primary" asp-action="\Identity\Adimin\Update" asp-route-id="@user.Id">Update</a></td>*@
+    <td><a class="btn btn-sm btn-primary" asp-page="./Update" asp-route-id="@user.Id">Update</a></td>
+ @*   <a asp-page="./Delete" asp-route-id="@item.CourseId">Delete</a>*@
+
+    <td>
+        <form asp-action="Delete" asp-route-id="@user.Id" method="post">
+            <button type="submit" class="btn btn-sm btn-danger">
+                Delete
+            </button>
+        </form>
+    </td>
+</tr>
     }
 </table>

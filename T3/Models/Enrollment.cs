@@ -5,7 +5,9 @@ using System.Threading.Tasks;
 
 namespace T3.Models
 {
+    //The class is for student who enroll this class
     //todo use generic combine Client & Teacher Enrollment
+    
     public class Enrollment
     {
         //public int EnrollmentId { get; set; } 
@@ -22,8 +24,6 @@ namespace T3.Models
 
         public Student Student { get; set; }
         public Course Course { get; set; }
-
-
 
         public DateTime DateTime { get; set; }
         public int FinishState { get; set; } //完成、缺席？

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -8,14 +8,14 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using T3.Areas.Identity.Data;
 
-namespace T3.Areas.Identity.Pages.Account.Manage
+namespace T3.Areas.Identity.Pages.Admin
 {
-    public partial class IndexModel : PageModel
+    public class UpdateModel : PageModel
     {
         private readonly AppUserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
 
-        public IndexModel(
+        public UpdateModel(
             AppUserManager<AppUser> userManager,
             SignInManager<AppUser> signInManager)
         {
@@ -45,7 +45,7 @@ namespace T3.Areas.Identity.Pages.Account.Manage
             var userName = await _userManager.GetUserNameAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
 
-            Username = userName;
+            Username = userName;//why do net choose a simple way? just like:user.UserName
 
             Input = new InputModel
             {
@@ -53,19 +53,14 @@ namespace T3.Areas.Identity.Pages.Account.Manage
             };
         }
 
-        public async Task<IActionResult> OnGetAsync(String Id)
+        public async Task<IActionResult> OnGetAsync(string Id)
         {
-            if (Id == null)
-            {
-                return NotFound($"Unable to load user with Null ID .");
-            }
             //var user = await _userManager.GetUserAsync(User);
             var user = await _userManager.FindByIdAsync(Id);
             if (user == null)
             {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                return NotFound($"Unable to load user with ID '{Id}'.");
             }
-
 
             await LoadAsync(user);
             return Page();
@@ -101,4 +96,5 @@ namespace T3.Areas.Identity.Pages.Account.Manage
             return RedirectToPage();
         }
     }
+    
 }

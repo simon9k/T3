@@ -1,0 +1,79 @@
+﻿@page
+@model T3.Areas.Templates.Pages.IndexModel
+@{ ViewData["Title"] = "Upload Files Sample"; }
+
+<h1>Files in the database</h1>
+<li>
+    Database upload examples
+    <ul>
+@*        <li><a asp-page="/BufferedSingleFileUploadDb">Upload one buffered file with one file upload control</a></li>*@
+        <li><a asp-page="/BufferedMultipleFileUploadDb">Upload multiple buffered files with one file upload control</a></li>
+        @*<li><a asp-page="/BufferedDoubleFileUploadDb">Upload two buffered files with two file upload controls</a></li>
+        <li><a asp-page="/StreamedSingleFileUploadDb">Stream a file with AJAX to a controller endpoint</a></li>*@
+    </ul>
+</li>
+@if (Model.DatabaseFiles.Count == 0)
+{
+<p>
+    No files are available. Visit one of the file upload scenario pages to upload one or more files.
+</p> }
+            else
+            {
+<table class="table">
+    <thead>
+        <tr>
+            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.DatabaseFiles[0].UntrustedName) /
+                @Html.DisplayNameFor(model => model.DatabaseFiles[0].Note)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DatabaseFiles[0].UploadDT)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DatabaseFiles[0].Size)
+            </th>
+            <th>
+                FileStreamResult
+            </th>
+            <th>
+
+            </th>
+            <th>
+
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var file in Model.DatabaseFiles)
+        {
+<tr>
+    <td>
+        <a asp-page="./DeleteDbFile" asp-route-id="@file.Id">Delete</a>
+    </td>
+    <td>
+        <b>@file.UntrustedName</b><br>
+        @Html.DisplayFor(modelItem => file.Note)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => file.UploadDT)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => file.Size)
+    </td>
+    <td>
+        <a asp-page-handler="DownloadDb" asp-route-id="@file.Id">Download</a>
+    </td>
+    <td>
+        @*                    <a asp-page="./ReadDb" asp-route-id="@file.Id">Read</a>*@
+        <a asp-page-handler="ReadDb" asp-route-id="@file.Id">Read</a>
+    </td>
+    <td>
+        <a asp-page="./ReadDb" asp-route-id="@file.Id">Read</a>
+        @*                  <a asp-page-handler="./ReadDb" asp-route-id="@file.Id">Read</a>*@
+    </td>
+</tr>
+}
+    </tbody>
+</table>}
+

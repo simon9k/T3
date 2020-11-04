@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using T3.Data;
 using T3.Models;
 
-namespace T3.Areas.Students.Pages
+namespace T3.Areas.Staffs.Pages
 {
     public class DetailsModel : PageModel
     {
@@ -19,7 +19,7 @@ namespace T3.Areas.Students.Pages
             _context = context;
         }
 
-        public Student Student { get; set; }
+        public Staff Staff { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -28,11 +28,10 @@ namespace T3.Areas.Students.Pages
                 return NotFound();
             }
 
-            Student = await _context.Students
-                .FirstOrDefaultAsync(m => m.Id == id);
-                //.Include(s => s.Tenant).FirstOrDefaultAsync(m => m.Id == id);
+            Staff = await _context.Staffs
+                .Include(s => s.Tenant).FirstOrDefaultAsync(m => m.Id == id);
 
-            if (Student == null)
+            if (Staff == null)
             {
                 return NotFound();
             }

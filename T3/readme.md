@@ -1,11 +1,24 @@
 # readme
 
-a appoint make prog for selfemployed small bussiness
+a appoint make prog for self-employed small bussiness
+
+##todo features
+
+1.templates/模板、演示数据、数据复位（将过期数据清除、导出），自动载入等等
+1. 演示数据：包括class等（重复）:excel 数据导入、存储到DB、再解析执行，个人照片信息导入并显示  
+1. 模板：主要是面对不同行业用户整理的
+1. 数据复位：运行时间较长后，清理复位，重新开始
+
+1.Multi Tenant
+1. 还应该有各种信息、设置、特定规则等
 
 
-1. Multi Tenant 
-1. authorization & authentication(Claims based)
-1. cloud based
+1.authorization & authentication(Claims based)
+1.cloud based
+1. DI/CI?自动的测试和发布
+
+1.logs
+
 1. wechat login
 1. auto task
 6. Unit test & 页面测试发布测试

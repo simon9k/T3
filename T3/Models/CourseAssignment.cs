@@ -6,6 +6,8 @@ using T3.Areas.Identity.Data;
 
 namespace T3.Models
 {
+    //The Class is for responsible teachers/coaches
+    //todo should design a delegat class for teachers/coaches, directly using appUser is not a good idea
     public class CourseAssignment
     {
         public string AppUserId { get; set; }//becarefull, it's not Guid
