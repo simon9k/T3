@@ -21,6 +21,7 @@ namespace T3.Models
 
     }
 
+    //Student/client connect to AppUser 
     public class GuardianRelation
     {
         public string AppUserId { get; set; }//becarefull, it's not Guid
@@ -35,7 +36,7 @@ namespace T3.Models
 
     public enum GuardianType
     {
-        Father, Mother, GrandParent, Self, Other
+        Father, Mother, GrandPa, GrandMa,Self, Other
     }
 
 }

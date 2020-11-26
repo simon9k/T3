@@ -32,41 +32,56 @@
                 @Html.DisplayNameFor(model => model.Student[0].PersonalID)
             </th>
             <th>
-@*                @Html.DisplayNameFor(model => model.Student[0].Tenant)*@
+                @*                @Html.DisplayNameFor(model => model.Student[0].Tenant)*@
+                @*@Html.DisplayNameFor(model => model.Student[0].GuardianRelations.ToList())*@
+                监护人
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Student) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NickName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Sex)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.BOD)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EOD)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PersonalID)
-            </td>
-            <td>
-                @*@Html.DisplayFor(modelItem => item.Tenant.TenantId)*@
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model.Student)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NickName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sex)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BOD)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EOD)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PersonalID)
+                </td>
+                <td>
+                    @*@Html.DisplayFor(modelItem => item.Tenant.TenantId)*@
+                    @{
+                        string Guards = null;
+                        if (item.GuardianRelations!=null)
+                        {
+                            foreach(var guard in item.GuardianRelations)
+                            {
+                                Guards = guard.AppUser.UserName + " ";
+                            }
+                        }
+                        Html.DisplayText(Guards);
+                    }
+
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

@@ -1,0 +1,293 @@
+{
+  "id": "d04d959c-384f-46f9-8fc1-c29ae49eb3f8",
+  "version": "2.0",
+  "name": "t3",
+  "url": "https://localhost:44307",
+  "tests": [{
+    "id": "15bf997f-4eae-4fe3-b7a8-e3509b92d6d5",
+    "name": "try1",
+    "commands": [{
+      "id": "daf0e1a6-0f8c-4338-ab85-19bb508b3b05",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "ade1b2b8-c617-4896-8376-5ad6b733774f",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1456x876",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "c8ecb593-1de0-4328-8998-18a8eb23a46a",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Staffs",
+      "targets": [
+        ["linkText=Staffs", "linkText"],
+        ["css=.nav-item:nth-child(7) > .nav-link", "css:finder"],
+        ["xpath=//a[contains(text(),'Staffs')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/Staffs')]", "xpath:href"],
+        ["xpath=//li[7]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Staffs')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "03a19eea-6eb8-45cd-8f2e-d243efbf17f9",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Edit",
+      "targets": [
+        ["linkText=Edit", "linkText"],
+        ["css=td > a:nth-child(1)", "css:finder"],
+        ["xpath=//a[contains(text(),'Edit')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/Staffs/Edit?id=2')]", "xpath:href"],
+        ["xpath=//td[9]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Edit')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "ef2b3b6f-9f00-45e8-84a4-bfd2957b6c37",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Back to List",
+      "targets": [
+        ["linkText=Back to List", "linkText"],
+        ["css=div:nth-child(5) > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Back to List')]", "xpath:link"],
+        ["xpath=(//a[contains(@href, '/Staffs')])[2]", "xpath:href"],
+        ["xpath=//div[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Back to List')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "378b2a3d-5e4d-4145-bae4-35c6283d1db6",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Create New",
+      "targets": [
+        ["linkText=Create New", "linkText"],
+        ["css=p > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Create New')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/Staffs/Create')]", "xpath:href"],
+        ["xpath=//p/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Create New')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "f3d25da3-5ee6-4f93-ae80-6f6ceffdcf82",
+      "comment": "",
+      "command": "click",
+      "target": "id=Staff_JobTitle",
+      "targets": [
+        ["id=Staff_JobTitle", "id"],
+        ["name=Staff.JobTitle", "name"],
+        ["css=#Staff_JobTitle", "css:finder"],
+        ["xpath=//input[@id='Staff_JobTitle']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "dd2f6be3-c342-40fc-8f2d-5d6ebd55f3f9",
+      "comment": "",
+      "command": "type",
+      "target": "id=Staff_JobTitle",
+      "targets": [
+        ["id=Staff_JobTitle", "id"],
+        ["name=Staff.JobTitle", "name"],
+        ["css=#Staff_JobTitle", "css:finder"],
+        ["xpath=//input[@id='Staff_JobTitle']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "dddd"
+    }, {
+      "id": "8b53a6e0-0e67-4f7f-9fa7-9778e221e92b",
+      "comment": "",
+      "command": "click",
+      "target": "id=Staff_Name",
+      "targets": [
+        ["id=Staff_Name", "id"],
+        ["name=Staff.Name", "name"],
+        ["css=#Staff_Name", "css:finder"],
+        ["xpath=//input[@id='Staff_Name']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ab06292e-1838-408d-8c88-bf0a41510208",
+      "comment": "",
+      "command": "type",
+      "target": "id=Staff_Name",
+      "targets": [
+        ["id=Staff_Name", "id"],
+        ["name=Staff.Name", "name"],
+        ["css=#Staff_Name", "css:finder"],
+        ["xpath=//input[@id='Staff_Name']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "ddddd"
+    }, {
+      "id": "d83f473a-599a-43bf-9152-ad656b359db5",
+      "comment": "",
+      "command": "click",
+      "target": "id=Staff_NickName",
+      "targets": [
+        ["id=Staff_NickName", "id"],
+        ["name=Staff.NickName", "name"],
+        ["css=#Staff_NickName", "css:finder"],
+        ["xpath=//input[@id='Staff_NickName']", "xpath:attributes"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "98c1c350-900d-4419-a47a-8a31b3a33b6b",
+      "comment": "",
+      "command": "type",
+      "target": "id=Staff_NickName",
+      "targets": [
+        ["id=Staff_NickName", "id"],
+        ["name=Staff.NickName", "name"],
+        ["css=#Staff_NickName", "css:finder"],
+        ["xpath=//input[@id='Staff_NickName']", "xpath:attributes"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": "dd"
+    }, {
+      "id": "023a3c7a-7075-4a2c-ad1e-2d89ffc54700",
+      "comment": "",
+      "command": "click",
+      "target": "id=Staff_Sex",
+      "targets": [
+        ["id=Staff_Sex", "id"],
+        ["name=Staff.Sex", "name"],
+        ["css=#Staff_Sex", "css:finder"],
+        ["xpath=//input[@id='Staff_Sex']", "xpath:attributes"],
+        ["xpath=//div[4]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "7641c2cd-efeb-4337-84ac-defed3c9ba3a",
+      "comment": "",
+      "command": "type",
+      "target": "id=Staff_Sex",
+      "targets": [
+        ["id=Staff_Sex", "id"],
+        ["name=Staff.Sex", "name"],
+        ["css=#Staff_Sex", "css:finder"],
+        ["xpath=//input[@id='Staff_Sex']", "xpath:attributes"],
+        ["xpath=//div[4]/input", "xpath:position"]
+      ],
+      "value": "男"
+    }, {
+      "id": "1ed0f9ab-0c81-46db-8bb0-e71a3d54166c",
+      "comment": "",
+      "command": "click",
+      "target": "id=Staff_BOD",
+      "targets": [
+        ["id=Staff_BOD", "id"],
+        ["name=Staff.BOD", "name"],
+        ["css=#Staff_BOD", "css:finder"],
+        ["xpath=//input[@id='Staff_BOD']", "xpath:attributes"],
+        ["xpath=//div[5]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "07790638-800c-41f0-9ccb-aa33f4f2b75d",
+      "comment": "",
+      "command": "type",
+      "target": "id=Staff_BOD",
+      "targets": [
+        ["id=Staff_BOD", "id"],
+        ["name=Staff.BOD", "name"],
+        ["css=#Staff_BOD", "css:finder"],
+        ["xpath=//input[@id='Staff_BOD']", "xpath:attributes"],
+        ["xpath=//div[5]/input", "xpath:position"]
+      ],
+      "value": "2020-11-28"
+    }, {
+      "id": "1aa0edf8-7720-491b-9498-afbd9799c6be",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn-primary",
+      "targets": [
+        ["css=.btn-primary", "css:finder"],
+        ["xpath=//input[@value='Create']", "xpath:attributes"],
+        ["xpath=//div[8]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "cd534295-0ee8-4894-b63d-934a45e0b6a2",
+      "comment": "",
+      "command": "click",
+      "target": "id=Staff_EOD",
+      "targets": [
+        ["id=Staff_EOD", "id"],
+        ["name=Staff.EOD", "name"],
+        ["css=#Staff_EOD", "css:finder"],
+        ["xpath=//input[@id='Staff_EOD']", "xpath:attributes"],
+        ["xpath=//div[6]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "7a5de829-7885-408e-ba26-7475c6d37db3",
+      "comment": "",
+      "command": "type",
+      "target": "id=Staff_EOD",
+      "targets": [
+        ["id=Staff_EOD", "id"],
+        ["name=Staff.EOD", "name"],
+        ["css=#Staff_EOD", "css:finder"],
+        ["xpath=//input[@id='Staff_EOD']", "xpath:attributes"],
+        ["xpath=//div[6]/input", "xpath:position"]
+      ],
+      "value": "2020-11-28"
+    }, {
+      "id": "b85a2356-0d4b-4d51-8234-97d3c59bdd12",
+      "comment": "",
+      "command": "click",
+      "target": "css=.row",
+      "targets": [
+        ["css=.row", "css:finder"],
+        ["xpath=//main/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a5a773b1-42d3-45d6-8934-26747f578ca8",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn-primary",
+      "targets": [
+        ["css=.btn-primary", "css:finder"],
+        ["xpath=//input[@value='Create']", "xpath:attributes"],
+        ["xpath=//div[8]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "57588413-887b-4269-8822-95bb21a812b6",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Students",
+      "targets": [
+        ["linkText=Students", "linkText"],
+        ["css=.nav-item:nth-child(6) > .nav-link", "css:finder"],
+        ["xpath=//a[contains(text(),'Students')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/Students')]", "xpath:href"],
+        ["xpath=//li[6]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Students')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "251a9fc6-10f9-40ea-99dd-fc7ea0303bde",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["15bf997f-4eae-4fe3-b7a8-e3509b92d6d5"]
+  }],
+  "urls": ["https://localhost:44307/"],
+  "plugins": []
+}

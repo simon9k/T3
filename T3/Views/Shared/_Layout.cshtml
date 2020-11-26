@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
+    <div class="se-pre-con"></div>@*this is for loading gif*@
+
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
@@ -48,6 +50,17 @@
             </div>
         </nav>
     </header>
+    @* put script here onle because of the loading image needed jquery, it's better way maybe *@
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script>
+        //paste this code under the head tag or in a separate js file. Wait for window load,
+        // jq3.* Breaking change: .load(), .unload(), and .error() removed
+        $(window).on("load",function () {
+            // Animate loader off screen
+            $(".se-pre-con").fadeOut("slow");;
+        });
+    </script>
+
     @using T3.Areas.Identity.Data;
     @inject ITenantResolver tenantResolver
     <div>TenantId = @tenantResolver.GetTenantId()</div>
@@ -55,9 +68,9 @@
     @{
         string roles = null;
         var u = await userManager.GetUserAsync(User);
-        string[] roleArray = u==null ? null :(await userManager.GetRolesAsync(u))?.ToList()?.ToArray();
+        string[] roleArray = u == null ? null : (await userManager.GetRolesAsync(u))?.ToList()?.ToArray();
         //if = (await userManager.GetRolesAsync(u))?.ToList()?.ToArray();
-        roles = roleArray == null ? "":string.Join(",", roleArray);
+        roles = roleArray == null ? "" : string.Join(",", roleArray);
     }
 
     <div>
@@ -75,9 +88,10 @@
             &copy; 2019 - T3 - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+@*    <script src="~/lib/jquery/dist/jquery.min.js"></script>*@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+
     @RenderSection("Scripts", required: false)
 </body>
 </html>
