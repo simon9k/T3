@@ -60,7 +60,7 @@
                         {
                             foreach (var ca in item.CourseAssignments)
                             {
-                                <div>@ca.AppUser.UserName</div>
+                                <div>@ca.Staff.Name</div>
                                 //instructorsName +=  + "";
 
                             }
@@ -200,7 +200,7 @@ else
                     {
                         foreach (var ca in item.CourseAssignments)
                         {
-                            <div>@ca.AppUser.UserName</div>
+                            <div>@ca.Staff.Name</div>
                         }
 
                     }

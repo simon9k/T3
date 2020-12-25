@@ -70,7 +70,7 @@ namespace T3.Data
 
             //Set composite primary key
             modelBuilder.Entity<CourseAssignment>()
-                .HasKey(c => new { c.CourseId, c.AppUserId });
+                .HasKey(c => new { c.CourseId, c.StaffId });
 
             //Set CourseId,Id unique
             modelBuilder.Entity<Enrollment>()

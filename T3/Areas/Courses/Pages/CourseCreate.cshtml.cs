@@ -17,47 +17,56 @@ namespace T3.Areas.Courses.Pages
         //private readonly T3.Data.ApplicationDbContext _context;
         private readonly AppUserManager<AppUser> _UserMananger;
         private readonly CourseManager _CourseManager;
+        private readonly StaffManager _StaffManager;
 
-        public CourseCreateModel(AppUserManager<AppUser> UserMgr, CourseManager CourseMgr)
+
+        public CourseCreateModel(AppUserManager<AppUser> UserMgr, CourseManager CourseMgr, StaffManager StaffMgr)
         {
             //_context = context;
             _UserMananger = UserMgr;
             _CourseManager = CourseMgr;
+            _StaffManager = StaffMgr;
+
 
 
         }
 
         public async Task<IActionResult> OnGetAsync()
         {
-            var selectLists = (await _UserMananger.GetInstructorsAsync()).ToList();
+            //var selectLists = (await _UserMananger.GetInstructorsAsync()).ToList();
+            //var selectLists = (await _StaffManager.GetAllAsync()).ToList();
+            //VwCourse.Instructors = new List<Instructor>();
 
-            //Instructors = new MultiSelectList(selectLists, selectLists);
-            //Instructors = new MultiSelectList(selectLists, null); //no Instructor to New Course
-            Instructors = new MultiSelectList(selectLists, "Id", "UserName"); //no Instructor to New Course
+            //foreach (var staff in selectLists)
+            //{
+            //    VwCourse.Instructors.Add(new Instructor { Id = staff.Id, Name = staff.Name, Checked = false });
+
+            //}
+            ////Instructors = new MultiSelectList(selectLists, selectLists);
+            ////Instructors = new MultiSelectList(selectLists, null); //no Instructor to New Course
+            //Instructors = new MultiSelectList(selectLists, "Id", "Name"); //no Instructor to New Course
+            //VwCourse.InstructorsSelectList = new SelectList(selectLists, nameof(Staff.Id), nameof(Staff.Name));
+            VwCourse.InstructorsSelectList = new SelectList((await _StaffManager.GetAllAsync()).ToList(), nameof(Staff.Id), nameof(Staff.Name));
 
             return Page();
         }
 
         [BindProperty]
-        public VwCourse VwCourse { get; set; }
+        public VwCourse VwCourse { get; set; } = new VwCourse { };
 
-        //todo: the MultiSelectList is so uggly;syncfusion.com is beautyful but expensive
-        //   anyway else?
-        //   a box show items which are selected, there is a +/- button nearby, click the button
-        //   a list of check box show , clicking one then box changed accordingly
-        //   or customize a TagHelper
-        public MultiSelectList Instructors { get; set; }
-        //public MultiSelectList MultiInstructors { get; set; }
-
-        //[BindProperty(SupportsGet =true)]
-        //public string InstructorId { get; set; }
-
+        //public SelectList InstructorsSelectList { get; set; }
+        //the MultiSelectList is so uggly;syncfusion.com is beautyful but expensive
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
             {
+                //codes below is for keeping the value unchanged when validation failed
+                //when submit failed because of validation failed & binding mechanism, the instructors[i].name turn to Null, why ?
+                //now it's InstructorsSelectList turn to Null
+                VwCourse.InstructorsSelectList = new SelectList((await _StaffManager.GetAllAsync()).ToList(), nameof(Staff.Id), nameof(Staff.Name));
+
                 return Page();
             }
             //if (await TryUpdateModelAsync<Student>(
@@ -81,14 +90,25 @@ namespace T3.Areas.Courses.Pages
                         VwCourse.EndTime.Hour, VwCourse.EndTime.Minute, 0)
             };
             course.CourseAssignments = new List<CourseAssignment>();
+            //todo should validation the multiple selected first, if no item selected
+            //Checkboxes in a Razor Pages Form : https://www.learnrazorpages.com/razor-pages/forms/checkboxes
+            //foreach (var instr in VwCourse.Instructors)
+            //{
+            //    if (instr.Checked)
+            //    {
+            //        var cor = new CourseAssignment { StaffId = instr.Id, CourseId = VwCourse.id };
+            //        course.CourseAssignments.Add(cor);
 
-            foreach (var instr in VwCourse.Instructors)
+            //    }
+
+            //}
+
+            foreach (var i in VwCourse.InstructorsIdList)
             {
-                var cor = new CourseAssignment { AppUserId = instr ,CourseId= VwCourse.id};
+                var cor = new CourseAssignment { StaffId = i, CourseId = VwCourse.id };
                 course.CourseAssignments.Add(cor);
 
             }
-
 
             await _CourseManager.AddAsync(course);
             //Instructors.SelectMany<>

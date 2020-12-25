@@ -4,13 +4,13 @@ a appoint make prog for self-employed small bussiness
 
 ##todo features
 1. loading 的UI提示
-1.templates/模板、演示数据、数据复位（将过期数据清除、导出），自动载入等等
+1. templates/模板、演示数据、数据复位（将过期数据清除、导出），自动载入等等
 1. 演示数据：包括class等（重复）:excel 数据导入、存储到DB、再解析执行，个人照片信息导入并显示  
 1. 模板：主要是面对不同行业用户整理的
 1. 数据复位：运行时间较长后，清理复位，重新开始
 
 1. 数据迁移：发布数据库更新？
-1. 测试：unit testing；界面的实际操作测试？（很重要）
+1. 测试：unit testing；界面的实际操作测试？（很重要）selenium,is a great UI testing tool
 
 wechat
 1. 微信授权（将微信用户信息授权给第三方系统）

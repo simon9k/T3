@@ -7,19 +7,47 @@
 
 <h1>CourseCreate</h1>
 
-<h4>VwCourse</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <select multiple="multiple" asp-for="VwCourse.Instructors" asp-items="Model.Instructors">
-                    <option value="">选择教练</option>
-                </select>
-                @*<select multiple="multiple" asp-for="VwCourse.MultiInstructors" asp-items="Model.MultiInstructors">
-                    <option value="">All</option>
-                </select>*@
+
+                @*@for (var i = 0; i < Model.VwCourse.Instructors.Count(); i++)
+                    {
+                        <tr>
+                            <td><input type="hidden" asp-for="VwCourse.Instructors[i].Id" /></td>-->
+                            <td><input asp-for="VwCourse.Instructors[i].Checked" /></td>
+                        </tr>
+                    }*@
+
+                @* use Tokenize2,
+                    1.how to Display Dropdown on focus? #12 https://github.com/dragonofmercy/Tokenize2/issues/12
+                    2.how to use select tag helper and auto data binding
+                *@
+                <select asp-for="VwCourse.InstructorsIdList" asp-items="@Model.VwCourse.InstructorsSelectList"></select>
+                <span asp-validation-for="VwCourse.InstructorsIdList" class="text-danger"></span>
+                <script>
+                    //set tokenize2 sortable: 即可以拖拽、排序
+                    $('#VwCourse_InstructorsIdList').tokenize2({
+                        sortable: true
+                    });
+
+                    //set the tokenize2 dropdown when focused
+                    $('#VwCourse_InstructorsIdList').on('tokenize:select', function (container) {
+                        $(this).tokenize2().trigger('tokenize:search', [$(this).tokenize2().input.val()]);
+                    });
+                    //to get the data(selected item)
+                    //.data() is jquery api: Store arbitrary data associated with the matched elements or return the value at the named data store for the first element in the set of matched elements.
+                    $('#VwCourse_InstructorsIdList').on('tokenize:tokens:reorder tokenize:tokens:add', function () {
+                        $('#tokenize-demo-console').html($(this).data('tokenize2').toArray().join(', '));
+                        //$('#VwCourse_InstructorsList').val($(this).data('tokenize2').toArray().join(', '));
+                        //keep the tokenize2 allways dropdown when focused
+                        $(this).tokenize2().trigger('tokenize:search', [$(this).tokenize2().input.val()]);
+                    });
+                </script>
+                <pre class="console"><code id="tokenize-demo-console"></code></pre>
 
             </div>
             <div class="form-group">
@@ -63,3 +91,6 @@
     <a asp-page="Index">Back to List</a>
 </div>
 
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -33,7 +33,7 @@ namespace T3.Areas.Courses.Pages
             //FirstOrDefaultAsync(m => m.CourseId == id)
             Course = await _context.Courses
                 .Include(c => c.CourseAssignments)
-                    .ThenInclude(ca => ca.AppUser)
+                    .ThenInclude(ca => ca.Staff)
                 .FirstOrDefaultAsync(m => m.CourseId == id);
 
             if (Course == null)

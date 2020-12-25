@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using T3.Data;
 
-namespace T3.Data.Migrations
+namespace T3.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20191203033113_SetTenantIdNoDefault")]
-    partial class SetTenantIdNoDefault
+    [Migration("20201204065758_1")]
+    partial class _1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -232,6 +232,212 @@ namespace T3.Data.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("T3.Areas.Templates.Data.Template", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<byte[]>("Content")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("Note")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("Size")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("UntrustedName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UploadDT")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Templates");
+                });
+
+            modelBuilder.Entity("T3.Models.Course", b =>
+                {
+                    b.Property<int>("CourseId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("EndTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsCyclic")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("OriginCourseId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("StartTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("TanentId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("TenantId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("CourseId");
+
+                    b.HasIndex("TenantId");
+
+                    b.ToTable("Courses");
+                });
+
+            modelBuilder.Entity("T3.Models.CourseAssignment", b =>
+                {
+                    b.Property<int>("CourseId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StaffId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("FinishState")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("bPrimary")
+                        .HasColumnType("bit");
+
+                    b.HasKey("CourseId", "StaffId");
+
+                    b.HasIndex("StaffId");
+
+                    b.ToTable("CourseAssignment");
+                });
+
+            modelBuilder.Entity("T3.Models.Enrollment", b =>
+                {
+                    b.Property<int>("CourseId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StudentId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("FinishState")
+                        .HasColumnType("int");
+
+                    b.HasKey("CourseId", "StudentId");
+
+                    b.HasIndex("StudentId");
+
+                    b.ToTable("Enrollment");
+                });
+
+            modelBuilder.Entity("T3.Models.GuardianRelation", b =>
+                {
+                    b.Property<string>("AppUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("StudentId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("guardianType")
+                        .HasColumnType("int");
+
+                    b.HasKey("AppUserId", "Id");
+
+                    b.HasIndex("StudentId");
+
+                    b.ToTable("GuardianRelation");
+                });
+
+            modelBuilder.Entity("T3.Models.Staff", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("BOD")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("EOD")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("JobTitle")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)")
+                        .HasMaxLength(20);
+
+                    b.Property<string>("NickName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)")
+                        .HasMaxLength(20);
+
+                    b.Property<string>("PersonalID")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Sex")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("TenantId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TenantId");
+
+                    b.ToTable("Staffs");
+                });
+
+            modelBuilder.Entity("T3.Models.Student", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("BOD")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("EOD")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)")
+                        .HasMaxLength(20);
+
+                    b.Property<string>("NickName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)")
+                        .HasMaxLength(20);
+
+                    b.Property<string>("PersonalID")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Sex")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("TenantId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TenantId");
+
+                    b.ToTable("Students");
+                });
+
             modelBuilder.Entity("T3.Models.Tenant", b =>
                 {
                     b.Property<Guid>("TenantId")
@@ -310,6 +516,74 @@ namespace T3.Data.Migrations
                 {
                     b.HasOne("T3.Models.Tenant", "Tenant")
                         .WithMany("Users")
+                        .HasForeignKey("TenantId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("T3.Models.Course", b =>
+                {
+                    b.HasOne("T3.Models.Tenant", "Tenant")
+                        .WithMany("Courses")
+                        .HasForeignKey("TenantId");
+                });
+
+            modelBuilder.Entity("T3.Models.CourseAssignment", b =>
+                {
+                    b.HasOne("T3.Models.Course", "Course")
+                        .WithMany("CourseAssignments")
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("T3.Models.Staff", "Staff")
+                        .WithMany()
+                        .HasForeignKey("StaffId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("T3.Models.Enrollment", b =>
+                {
+                    b.HasOne("T3.Models.Course", "Course")
+                        .WithMany("Enrollments")
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("T3.Models.Student", "Student")
+                        .WithMany("Enrollments")
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("T3.Models.GuardianRelation", b =>
+                {
+                    b.HasOne("T3.Areas.Identity.Data.AppUser", "AppUser")
+                        .WithMany("GuardianRelations")
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("T3.Models.Student", "Student")
+                        .WithMany("GuardianRelations")
+                        .HasForeignKey("StudentId");
+                });
+
+            modelBuilder.Entity("T3.Models.Staff", b =>
+                {
+                    b.HasOne("T3.Models.Tenant", "Tenant")
+                        .WithMany()
+                        .HasForeignKey("TenantId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("T3.Models.Student", b =>
+                {
+                    b.HasOne("T3.Models.Tenant", "Tenant")
+                        .WithMany("Students")
                         .HasForeignKey("TenantId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

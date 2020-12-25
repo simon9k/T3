@@ -18,7 +18,7 @@ namespace T3.Areas.Identity.Data
 
         public Tenant Tenant{  get; set; }
         public int MyProperty { get; set; }
-        public ICollection<CourseAssignment> CourseAssignments { get; set; }
+        //public ICollection<CourseAssignment> CourseAssignments { get; set; }
         public ICollection<GuardianRelation> GuardianRelations { get; set; }
 
     }

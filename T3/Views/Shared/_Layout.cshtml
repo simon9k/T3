@@ -6,6 +6,8 @@
     <title>@ViewData["Title"] - T3</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/tokenize2.min.css" />
+
 </head>
 <body>
     <div class="se-pre-con"></div>@*this is for loading gif*@
@@ -52,6 +54,9 @@
     </header>
     @* put script here onle because of the loading image needed jquery, it's better way maybe *@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    @*todo move to better place because not all page demand this script*@
+    <script src="~/lib/Tokenize2/tokenize2.min.js"></script> 
+
     <script>
         //paste this code under the head tag or in a separate js file. Wait for window load,
         // jq3.* Breaking change: .load(), .unload(), and .error() removed

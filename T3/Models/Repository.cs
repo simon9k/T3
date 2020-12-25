@@ -76,7 +76,7 @@ namespace T3.Models
             var EndDate = StartDate.AddDays(7).AddMilliseconds(-1);
             return await _db.Set<Course>().Where(c => c.StartTime >= StartDate && c.StartTime < EndDate)
                 .Include(c => c.CourseAssignments)
-                .ThenInclude(ca => ca.AppUser)
+                .ThenInclude(ca => ca.Staff)
                 .OrderBy(c => c.StartTime).ToListAsync();
         }
 
